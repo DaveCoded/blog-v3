@@ -3,7 +3,9 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "arbour-config": ["./arbour.config.ts"]
+            "arbour-config": ["./arbour.config.ts"],
+            "components/*": ["./src/components/*"],
+            "layouts/*": ["./src/layouts/*"]
         },
         "strictNullChecks": true
     }
