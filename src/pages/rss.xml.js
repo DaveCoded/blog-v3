@@ -4,7 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import config from 'arbour-config';
 
 export async function GET(context) {
-    const posts = await getCollection('blog');
+    const posts = await getCollection('posts');
 
     const publishRSSByDefault = !config.noRSS;
 
@@ -14,7 +14,7 @@ export async function GET(context) {
         })
         .map((post) => ({
             ...post.data,
-            link: `/blog/${post.slug}/`,
+            link: `/posts/${post.slug}/`,
         }));
 
     return rss({
