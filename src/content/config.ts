@@ -14,4 +14,18 @@ const posts = defineCollection({
     }),
 });
 
-export const collections = { posts };
+const notes = defineCollection({
+    type: 'content',
+    // Type-check frontmatter using a schema
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        // Transform string to Date object
+        pubDate: z.coerce.date(),
+        updatedDate: z.coerce.date().optional(),
+        heroImage: z.string().optional(),
+        noRSS: z.boolean().optional(),
+    }),
+});
+
+export const collections = { posts, notes };
