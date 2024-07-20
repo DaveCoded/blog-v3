@@ -1,18 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseHead from 'components/BaseHead.astro';
 import Footer from 'components/Footer.astro';
 import Header from 'components/Header.astro';
-import BlogPost from 'layouts/BlogPost.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../../src/consts';
+import { getUniqueTagsFromPosts } from 'utils/tags';
+import { getAllPosts } from 'utils/posts';
 
 export async function getStaticPaths() {
-    const posts = await getCollection('posts');
-    const notes = await getCollection('notes');
-    const snippets = await getCollection('snippets');
-    const allPosts = [...posts, ...notes, ...snippets];
-
-    const uniqueTags = [...new Set(allPosts.map(post => post.data.tags || []).flat())];
+    const allPosts = await getAllPosts();
+    const uniqueTags = getUniqueTagsFromPosts(allPosts);
 
     return uniqueTags.map(tag => {
         const filteredPosts = allPosts.filter(post => post.data.tags?.includes(tag));
@@ -29,7 +24,7 @@ const { posts } = Astro.props;
 
 <html lang="en">
     <head>
-        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+        <BaseHead title={tag} description={`All content that has the "${tag}" tag`} />
     </head>
     <body>
         <Header />
