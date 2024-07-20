@@ -93,12 +93,6 @@ const snippets = (await getCollection('snippets')).sort(
                         snippets.map(snippet => (
                             <li>
                                 <a href={`/snippets/${snippet.slug}/`}>
-                                    <img
-                                        width={720}
-                                        height={360}
-                                        src={snippet.data.heroImage}
-                                        alt=""
-                                    />
                                     <h4 class="title">{snippet.data.title}</h4>
                                     <p class="date">
                                         <FormattedDate date={snippet.data.pubDate} />
