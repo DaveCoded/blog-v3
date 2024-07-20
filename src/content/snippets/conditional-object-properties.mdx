@@ -1,0 +1,17 @@
+---
+title: 'Conditionally add a property to an object'
+description: 'How to conditionally add a property to an object in JavaScript'
+pubDate: '09/23/21'
+tags: ['JavaScript']
+---
+
+```js
+const isConditional = true;
+
+const myObject = {
+    type: 'excellent',
+    size: 'enormous',
+    aromas: ['jasmine', 'honeysuckle', 'puddle water'],
+    ...(isConditional && { optionalProperty: true })
+}
+```
