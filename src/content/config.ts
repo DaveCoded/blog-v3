@@ -11,6 +11,7 @@ const posts = defineCollection({
         updatedDate: z.coerce.date().optional(),
         heroImage: z.string().optional(),
         noRSS: z.boolean().optional(),
+        tags: z.string().array().optional(),
     }),
 });
 
@@ -24,6 +25,7 @@ const notes = defineCollection({
         updatedDate: z.coerce.date().optional(),
         heroImage: z.string().optional(),
         noRSS: z.boolean().optional(),
+        tags: z.string().array().optional(),
     }),
 });
 
@@ -37,6 +39,7 @@ const snippets = defineCollection({
         updatedDate: z.coerce.date().optional(),
         heroImage: z.string().optional(),
         noRSS: z.boolean().optional(),
+        tags: z.string().array().optional(),
     }),
 });
 
