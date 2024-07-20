@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Snippet from 'layouts/Snippet.astro';
+import { MDXcomponents } from 'components/MDXComponents';
 
 export async function getStaticPaths() {
     const snippets = await getCollection('snippets');
@@ -16,5 +17,5 @@ const { Content } = await snippet.render();
 ---
 
 <Snippet {...snippet.data}>
-    <Content />
+    <Content components={MDXcomponents} />
 </Snippet>
