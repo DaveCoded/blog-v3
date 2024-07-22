@@ -7,49 +7,49 @@ import FormattedDate from 'components/FormattedDate.astro';
 
 type Props = CollectionEntry<'posts'>['data'];
 
-const { title, description, pubDate, updatedDate } = Astro.props;
+const { title, description, pubDate, tags } = Astro.props;
 ---
 
 <html lang="en">
     <head>
         <BaseHead title={title} description={description} />
         <style>
-            main {
-                width: calc(100% - 2em);
-                max-width: 100%;
-                margin: 0;
-            }
-            .hero-image {
-                width: 100%;
-            }
-            .hero-image img {
-                display: block;
-                margin: 0 auto;
-                border-radius: 12px;
-                box-shadow: var(--box-shadow);
-            }
-            .prose {
-                width: 720px;
-                max-width: calc(100% - 2em);
-                margin: auto;
-                padding: 1em;
-                color: rgb(var(--gray-dark));
+            article {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
             .title {
-                margin-bottom: 1em;
-                padding: 1em 0;
-                text-align: center;
+                width: 880px;
                 line-height: 1;
+                padding-bottom: 128px;
             }
             .title h1 {
-                margin: 0 0 0.5em 0;
+                text-align: center;
+                margin-bottom: 52px;
+            }
+            .metadata {
+                color: var(--grey-dark);
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                gap: 24px;
+                margin: 0 2rem;
             }
             .date {
-                margin-bottom: 0.5em;
-                color: rgb(var(--gray));
+                white-space: nowrap;
             }
-            .last-updated-on {
-                font-style: italic;
+            .horizontal-rule {
+                width: 100%;
+                height: 1px;
+                background-color: var(--grey);
+            }
+            .tags {
+                display: flex;
+                gap: 12px;
+            }
+            .content {
+                width: 720px;
             }
         </style>
     </head>
@@ -58,25 +58,33 @@ const { title, description, pubDate, updatedDate } = Astro.props;
         <Header />
         <main>
             <article>
-                <div class="prose">
-                    <div class="title">
+                <div class="title">
+                    <h1>{title}</h1>
+                    <!-- TODO: chuck into a component -->
+                    <div class="metadata">
                         <div class="date">
                             <FormattedDate date={pubDate} />
-                            {
-                                updatedDate && (
-                                    <div class="last-updated-on">
-                                        Last updated on <FormattedDate date={updatedDate} />
-                                    </div>
-                                )
-                            }
                         </div>
-                        <h1>{title}</h1>
-                        <hr />
+                        <div class="horizontal-rule"></div>
+                        {
+                            tags && (
+                                <div class="tags">
+                                    {tags.map(tag => {
+                                        const formattedTag = tag.toLowerCase();
+                                        return (
+                                            <a href={`/tags/${formattedTag}`}>#{formattedTag}</a>
+                                        );
+                                    })}
+                                </div>
+                            )
+                        }
                     </div>
+                </div>
+                <div class="content">
                     <slot />
                 </div>
             </article>
+            <Footer />
         </main>
-        <Footer />
     </body>
 </html>

@@ -21,4 +21,11 @@ const isActive = href === pathname || href === '/' + subpath?.[0];
     a.active {
         font-weight: 500;
     }
+    a.active::before {
+        content: '❥';
+        color: hsl(var(--accent));
+        position: relative;
+        top: 2px;
+        left: -2px;
+    }
 </style>
