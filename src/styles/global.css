@@ -6,7 +6,6 @@
 
 :root {
     --accent: 128, 75%, 40%;
-    --accent-dark: #000d8a;
     --black: #312d37;
     --body-background: #fefdfb;
     --grey: #dadada;
@@ -116,10 +115,12 @@ h1 {
 h2 {
     font-size: 38px;
     font-weight: 400;
+    letter-spacing: -0.8px;
     padding-top: 24px;
 }
 h3 {
-    font-size: 1.953em;
+    font-size: 30px;
+    padding-top: 16px;
 }
 h4 {
     font-size: 1.563em;
