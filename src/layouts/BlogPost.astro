@@ -27,14 +27,16 @@ const { title, description, pubDate, tags } = Astro.props;
             .title h1 {
                 text-align: center;
                 margin-bottom: 52px;
+                text-wrap: pretty;
             }
             .metadata {
                 color: var(--grey-dark);
-                font-size: 18px;
+                font-size: var(--text--1);
                 display: flex;
                 align-items: center;
                 gap: 24px;
                 margin: 0 2rem;
+                white-space: nowrap;
             }
             .date {
                 white-space: nowrap;

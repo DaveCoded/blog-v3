@@ -1,9 +1,3 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
-
 :root {
     --accent: 128, 75%, 40%;
     --black: #312d37;
@@ -16,6 +10,21 @@
     --gray-gradient: rgba(var(--gray-light), 50%), #fff;
     --box-shadow: 0 2px 6px rgba(var(--gray), 25%),
         0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
+
+    /* Step -2: 12.16px → 12.944px */
+    --text--2: clamp(0.76rem, 0.743rem + 0.0852vw, 0.809rem);
+    /* Step -1: 15.2px → 17.2543px */
+    --text--1: clamp(0.95rem, 0.9053rem + 0.2233vw, 1.0784rem);
+    /* Step 0: 19px → 23px */
+    --text-0: clamp(1.1875rem, 1.1005rem + 0.4348vw, 1.4375rem);
+    /* Step 1: 23.75px → 30.659px */
+    --text-1: clamp(1.4844rem, 1.3342rem + 0.751vw, 1.9162rem);
+    /* Step 2: 29.6875px → 40.8684px */
+    --text-2: clamp(1.8555rem, 1.6124rem + 1.2153vw, 2.5543rem);
+    /* Step 3: 37.1094px → 54.4776px */
+    --text-3: clamp(2.3193rem, 1.9418rem + 1.8879vw, 3.4049rem);
+    /* Step 4: 46.3867px → 72.6187px */
+    --text-4: clamp(2.8992rem, 2.3289rem + 2.8513vw, 4.5387rem);
 }
 @font-face {
     font-family: 'Spectral';
@@ -90,8 +99,8 @@ body {
     background-size: 100% 600px;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    color: rgb(var(--gray-dark));
-    font-size: 23px;
+    color: var(--black);
+    font-size: var(--text-0);
     line-height: 1.65;
 }
 main {
@@ -108,29 +117,22 @@ h6 {
     line-height: 1.05;
 }
 h1 {
-    font-size: 68px;
+    font-size: var(--text-4);
     font-weight: 200;
     letter-spacing: -1.2px;
 }
 h2 {
-    font-size: 38px;
+    font-size: var(--text-2);
     font-weight: 400;
     letter-spacing: -0.8px;
     padding-top: 24px;
 }
 h3 {
-    font-size: 30px;
+    font-size: var(--text-1);
     padding-top: 16px;
 }
 h4 {
-    font-size: 1.563em;
-}
-h5 {
-    font-size: 1.25em;
-}
-strong,
-b {
-    font-weight: 700;
+    font-size: var(--text-1);
 }
 a {
     color: inherit;
@@ -145,13 +147,6 @@ p {
 .prose p {
     margin-bottom: 2em;
 }
-textarea {
-    width: 100%;
-    font-size: 16px;
-}
-input {
-    font-size: 16px;
-}
 table {
     width: 100%;
 }
@@ -162,14 +157,14 @@ img {
 }
 code {
     font-family: 'Operator Mono';
-    font-size: 18px;
+    font-size: var(--text--1);
     padding: 2px 5px;
     background-color: hsla(var(--accent), 0.2);
     border-radius: 4px;
 }
 pre {
     font-family: 'Operator Mono';
-    font-size: 18px;
+    font-size: var(--text--1);
     padding: 1.5em;
     border-radius: 8px;
 }
@@ -188,14 +183,6 @@ blockquote {
 hr {
     border: none;
     border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-    body {
-        font-size: 18px;
-    }
-    main {
-        padding: 1em;
-    }
 }
 
 .sr-only {
