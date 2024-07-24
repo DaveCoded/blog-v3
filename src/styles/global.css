@@ -162,6 +162,9 @@
 /* ============================  ELEMENTS  ========================== */
 /* ================================================================== */
 
+html {
+    scrollbar-color: hsla(var(--accent), 0.7) transparent;
+}
 body {
     font-family: 'Spectral', serif;
     font-weight: 200;
