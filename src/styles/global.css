@@ -165,6 +165,9 @@
 html {
     scrollbar-color: hsla(var(--accent), 0.7) transparent;
 }
+html * {
+    scrollbar-color: initial;
+}
 body {
     font-family: 'Spectral', serif;
     font-weight: 200;
