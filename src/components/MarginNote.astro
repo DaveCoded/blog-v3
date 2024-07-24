@@ -2,6 +2,86 @@
 const { id } = Astro.props;
 ---
 
-<p id={id}>
-    <slot />
-</p>
+<span>
+    <label for={id} class="margin-toggle sidenote-number"></label>
+    <input type="checkbox" id={id} class="margin-toggle" />
+    <span class="sidenote"><slot /></span>
+</span>
+
+<style>
+    span {
+        .sidenote {
+            float: right;
+            clear: right;
+            margin: 0 -49% 0 0;
+            width: 41%;
+            font-size: 80%;
+            color: var(--grey-dark);
+            line-height: 1.3;
+            vertical-align: baseline;
+            position: relative;
+            top: 3px;
+            padding-left: 1em;
+            height: 1rem; /* hack: prevents the sidenote from affecting the height of the grid content */
+        }
+        label {
+            cursor: pointer;
+        }
+        .sidenote-number {
+            counter-increment: sidenote-counter;
+        }
+        .sidenote-number:after,
+        .sidenote:before {
+            position: relative;
+            vertical-align: baseline;
+        }
+        .sidenote-number:after {
+            content: counter(sidenote-counter);
+            font-size: 70%;
+            vertical-align: super;
+            margin-left: -2px;
+        }
+        .sidenote:before {
+            content: counter(sidenote-counter);
+            font-size: 85%;
+            top: -0.1rem;
+            padding-right: 8px;
+            vertical-align: super;
+        }
+        blockquote .sidenote {
+            margin-right: -82%;
+            min-width: 59%;
+            text-align: left;
+        }
+        label.sidenote-number {
+            display: inline;
+        }
+        label.margin-toggle:not(.sidenote-number) {
+            display: none;
+        }
+        input.margin-toggle {
+            display: none;
+        }
+        @media (max-width: 1400px) {
+            label.margin-toggle:not(.sidenote-number) {
+                display: inline;
+            }
+            .sidenote,
+            .marginnote {
+                display: none;
+            }
+            .margin-toggle:checked + .sidenote {
+                display: block;
+                float: left;
+                left: 1rem;
+                clear: both;
+                width: 95%;
+                margin: 1rem 2.5% 2rem;
+                position: relative;
+            }
+            .margin-toggle:checked + .sidenote::before {
+                vertical-align: baseline;
+            }
+        }
+    }
+</style>
