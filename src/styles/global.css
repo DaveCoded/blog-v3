@@ -175,7 +175,7 @@ body {
     padding: 0;
     text-align: left;
     background-color: var(--body-background);
-    background-size: 100% 600px;
+    background-size: 100% 600px; /* TODO: decide if you need this */
     word-wrap: break-word;
     overflow-wrap: break-word;
     color: var(--black);
@@ -191,7 +191,7 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0 0 0.5rem 0;
+    margin: 0;
     color: var(--black);
     line-height: 1.05;
 }
@@ -204,7 +204,7 @@ h2 {
     font-size: var(--text-2);
     font-weight: 400;
     letter-spacing: -0.8px;
-    padding-top: 24px;
+    padding-top: var(--space-s-m);
 }
 h3 {
     font-size: var(--text-1);
@@ -220,8 +220,25 @@ a {
 a:hover {
     color: inherit;
 }
-p {
-    margin-bottom: 1em;
+p,
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+}
+::marker {
+    color: hsl(var(--accent));
+    font-size: 83%;
+    font-weight: 400;
+}
+ul li::marker {
+    content: '❥';
+}
+ul {
+    padding-left: var(--space-xs);
+}
+ul > li {
+    padding-left: var(--space-2xs);
 }
 .prose p {
     margin-bottom: 2em;
@@ -244,18 +261,18 @@ code {
 pre {
     font-family: 'Operator Mono';
     font-size: var(--text--1);
-    padding: 1.5em;
+    padding: var(--space-s);
     border-radius: 8px;
 }
 pre > code {
     all: unset;
 }
 blockquote {
-    --left-pad: 24px;
-    --horizontal-margin: 52px;
+    --left-pad: var(--space-s);
+    --horizontal-margin: var(--space-l);
     border-left: 1px solid var(--grey);
     padding-left: var(--left-pad);
-    margin: 0;
+    margin: var(--space-s);
     margin-right: var(--horizontal-margin);
     margin-left: calc(var(--horizontal-margin) - var(--left-pad));
 }
@@ -311,6 +328,7 @@ hr {
         var(--popout) [popout-end]
         var(--feature) [feature-end]
         var(--full) [full-end];
+    row-gap: var(--space-xs);
 }
 .content > * {
     grid-column: content;
