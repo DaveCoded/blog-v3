@@ -3,50 +3,33 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from 'components/BaseHead.astro';
 import Header from 'components/Header.astro';
 import Footer from 'components/Footer.astro';
-import FormattedDate from 'components/FormattedDate.astro';
+import Metadata from 'components/Metadata.astro';
 
 type Props = CollectionEntry<'notes'>['data'];
 
-const { title, description, pubDate } = Astro.props;
+const { title, description, pubDate, tags } = Astro.props;
 ---
 
 <html lang="en">
     <head>
         <BaseHead title={title} description={description} />
         <style>
-            main {
-                width: calc(100% - 2em);
-                max-width: 100%;
-                margin: 0;
-            }
-            .hero-image {
-                width: 100%;
-            }
-            .hero-image img {
-                display: block;
-                margin: 0 auto;
-                border-radius: 12px;
-                box-shadow: var(--box-shadow);
-            }
-            .prose {
-                width: 720px;
-                max-width: calc(100% - 2em);
-                margin: auto;
-                padding: 1em;
-                color: rgb(var(--gray-dark));
+            article {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                counter-reset: sidenote-counter;
             }
             .title {
-                margin-bottom: 1em;
-                padding: 1em 0;
-                text-align: center;
+                --gap: clamp(var(--space-xs), 5vw, var(--space-l));
+                width: min(880px, 100% - var(--gap) * 2);
                 line-height: 1;
+                padding-bottom: var(--space-2xl-3xl);
             }
             .title h1 {
-                margin: 0 0 0.5em 0;
-            }
-            .date {
-                margin-bottom: 0.5em;
-                color: rgb(var(--gray));
+                text-align: center;
+                margin-bottom: var(--space-l);
+                text-wrap: pretty;
             }
         </style>
     </head>
@@ -55,18 +38,15 @@ const { title, description, pubDate } = Astro.props;
         <Header />
         <main>
             <article>
-                <div class="prose">
-                    <div class="title">
-                        <div class="date">
-                            <FormattedDate date={pubDate} />
-                        </div>
-                        <h1>{title}</h1>
-                        <hr />
-                    </div>
+                <div class="title">
+                    <h1>{title}</h1>
+                    <Metadata pubDate={pubDate} tags={tags} />
+                </div>
+                <div class="content">
                     <slot />
                 </div>
             </article>
+            <Footer />
         </main>
-        <Footer />
     </body>
 </html>
