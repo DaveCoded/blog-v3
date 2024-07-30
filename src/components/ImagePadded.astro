@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets';
+import type { LocalImageProps, RemoteImageProps } from 'astro:assets';
+
+type Props = LocalImageProps | RemoteImageProps;
+
+const { props } = Astro;
+---
+
+<div class="image-wrapper">
+    <Image {...props} />
+</div>
+
+<style>
+    .image-wrapper {
+        padding: var(--space-s) 0;
+    }
+</style>

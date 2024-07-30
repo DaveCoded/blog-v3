@@ -7,7 +7,7 @@ pubDate: '06/08/23'
 tags: ['git']
 ---
 
-import { Image } from 'astro:assets';
+import ImagePadded from 'components/ImagePadded.astro';
 import interactiveRebase from 'assets/interactive-rebase-window.png';
 import squashedCommits from 'assets/squashed-commits.png';
 import editedCommit from 'assets/edited-commit.png';
@@ -31,7 +31,7 @@ commands you can run on each commit. The default command is `pick`, which means 
 as is".
 
 
-<Image
+<ImagePadded
     src={interactiveRebase}
     alt="Interactive rebase window"
 />
@@ -40,7 +40,7 @@ as is".
 Keep the top one annotated with `pick` (or just `p` for short), but change all the ones below it—every previous commit—to
 `squash` (or `s` for short). This will combine all the commits into one.
 
-<Image
+<ImagePadded
     src={squashedCommits}
     alt="Interactive rebase window with squash annotations"
 />
@@ -48,7 +48,7 @@ Keep the top one annotated with `pick` (or just `p` for short), but change all t
 Now you can `git rebase -i` again. This time you should see just one commit on your branch, which you can
 annotate with `edit` (or `e` for short).
 
-<Image
+<ImagePadded
     src={editedCommit}
     alt="Interactive rebase window with edited commit"
 />

@@ -7,10 +7,10 @@ tags: ['ASTs', 'MDX']
 keywords: 'MDX, ASTs, Abstract Syntax Tree, JSX, compilation'
 ---
 
-import { Image } from 'astro:assets';
+import ImagePadded from 'components/ImagePadded.astro';
 import diagram from 'assets/MDX-compilation.svg';
 
 Note to self: these are the steps to compile from MDX to JSX. Use `remark`
 to transform the MDAST and `rehype` to transform the HAST.
 
-<Image src={diagram} alt="Diagram of how MDX gets compiled to JSX" />
+<ImagePadded src={diagram} alt="Diagram of how MDX gets compiled to JSX" />

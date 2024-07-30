@@ -6,7 +6,7 @@ pubDate: '03/21/21'
 tags: ['React', 'TypeScript']
 ---
 
-import { Image } from 'astro:assets';
+import ImagePadded from 'components/ImagePadded.astro';
 import fileProperties from 'assets/file-properties.png';
 
 Working on the frontend can often feel a bit hacky. It can be difficult
@@ -29,7 +29,8 @@ reflect that:
   style={{
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: '1.5rem'
+    marginTop: 'var(--space-s)',
+    marginBottom: 'var(--space-s)'
   }}
 >
   <input type="file" />
@@ -89,7 +90,7 @@ object holds an array: `event.target.files`. It's an array because adding the `m
 attribute allows a user to upload more than one file. Each item (file) in this array has
 four useful properties, and four methods for manipulating the file Blob.
 
-<Image src={fileProperties} alt="" />
+<ImagePadded src={fileProperties} alt="" />
 
 You'll usually want to check the file `type` at this point and show an error if a user has
 uploaded a file with an extension you're not supporting. Adding the `accept` attribute to
