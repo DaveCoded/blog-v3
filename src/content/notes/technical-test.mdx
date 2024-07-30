@@ -1,0 +1,56 @@
+---
+title: "A technical test question"
+description: "A Javascript question from a technical test I took while interviewing for a company"
+pubDate: "07/30/24"
+tags: ["javascript", "technical test"]
+---
+
+I recently took a technical test as part of an interview process and thought I'd write it up. I don't have the exact question so I'm
+reproducing it in my own words (probably clarifying the ask in the process because the wording wasn't the best).
+
+## Question
+
+A class of students has to split into teams of two to work on a project. There is an odd number of students, so one will always be
+in a team on their own.
+
+Write a function that takes an array of team numbers, e.g. `[2, 5, 6, 2, 6]`. Each number represents a student by the team they are in.
+In this example, student 1 is in team 2, student 2 is in team 5, and so on. The function should return the team number of the student
+that has been left on their own. In this case, the function should return `5`.
+
+## Solution
+
+Whichever way you look at the problem, you'll always have to loop through the whole array, so the best time complexity is at least `O(n)`.
+My initial idea was to construct an object with the team numbers as keys and the number of students in each team as values. Then I could
+loop through the object and return the team number with only one student. So I'd end up with this structure:
+
+```javascript
+const hash = {
+    2: 2,
+    5: 1,
+    6: 2
+}
+```
+
+The question, however, mentioned that the array could be up to 100,000 members long. In the case of a large array,
+I'd be constructing a large object, and then trying to find a key by its value. It would be more efficient to
+just delete keys when they are encountered for a second time, i.e. when a team number is already in the object.
+This should eventually an object with only one team number in it.
+
+Here's my full solution as I remember it:
+
+```javascript
+function findSoloTeam(input) {
+    const hash = {};
+    for (const studentTeamNumber of input) {
+        if (hash[studentTeamNumber]) {
+            delete hash[studentTeamNumber];
+        } else {
+            hash[studentTeamNumber] = 1;
+        }
+    }
+    return Object.keys(hash)[0];
+}
+```
+
+Note that this returns a string, not a number. I can't remember which was required by the question, but you get the gist.
+Return `parseInt(Object.keys(hash)[0])` if you need a number.
