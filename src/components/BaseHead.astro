@@ -10,7 +10,6 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-console.log('canonicalURL', canonicalURL);
 
 const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 ---
@@ -22,7 +21,13 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link rel="preload" href="/fonts/spectral/extra-light.woff2" as="font" type="font/woff2" crossorigin />
+<link
+    rel="preload"
+    href="/fonts/spectral/extra-light.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+/>
 <link rel="preload" href="/fonts/spectral/regular.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/inter/regular.woff2" as="font" type="font/woff2" crossorigin />
 
