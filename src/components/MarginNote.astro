@@ -22,7 +22,9 @@ const { id } = Astro.props;
             position: relative;
             top: 3px;
             padding-left: 1em;
-            height: 1rem; /* hack: prevents the sidenote from affecting the height of the grid content */
+            height: var(
+                --space-2xs
+            ); /* hack: prevents the sidenote from affecting the height of the grid content */
         }
         label {
             cursor: pointer;
@@ -72,12 +74,11 @@ const { id } = Astro.props;
             }
             .margin-toggle:checked + .sidenote {
                 display: block;
-                float: left;
-                left: 1rem;
-                clear: both;
-                width: 95%;
-                margin: 1rem 2.5% 2rem;
-                position: relative;
+                height: min-content;
+                width: 92%;
+                margin: var(--space-m);
+                margin-right: 4.5%;
+                margin-left: 2.5%;
             }
             .margin-toggle:checked + .sidenote::before {
                 vertical-align: baseline;

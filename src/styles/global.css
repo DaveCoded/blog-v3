@@ -313,7 +313,7 @@ hr {
     white-space: nowrap;
 }
 .content {
-    --gap: clamp(var(--space-s), 6vw, var(--space-l));
+    --gap: clamp(var(--space-xs), 5vw, var(--space-l));
     --full: minmax(var(--gap), 1fr);
     --content: min(60ch, 100% - var(--gap) * 2);
     --popout: minmax(0, 2rem);
