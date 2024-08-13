@@ -5,7 +5,7 @@ import Footer from 'components/Footer.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from 'components/FormattedDate.astro';
 
-const posts = (await getCollection('posts')).sort(
+const snippets = (await getCollection('snippet')).sort(
     (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 );
 ---
@@ -13,7 +13,7 @@ const posts = (await getCollection('posts')).sort(
 <!doctype html>
 <html lang="en">
     <head>
-        <BaseHead title="Posts" description="Blog posts" />
+        <BaseHead title="Snippets" description="Short code snippets and reminders" />
         <style>
             main {
                 width: 960px;
@@ -90,12 +90,12 @@ const posts = (await getCollection('posts')).sort(
             <section>
                 <ul>
                     {
-                        posts.map(post => (
+                        snippets.map(snippet => (
                             <li>
-                                <a href={`/posts/${post.slug}/`}>
-                                    <h4 class="title">{post.data.title}</h4>
+                                <a href={`/snippets/${snippet.slug}/`}>
+                                    <h4 class="title">{snippet.data.title}</h4>
                                     <p class="date">
-                                        <FormattedDate date={post.data.pubDate} />
+                                        <FormattedDate date={snippet.data.pubDate} />
                                     </p>
                                 </a>
                             </li>

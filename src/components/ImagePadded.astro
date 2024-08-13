@@ -4,11 +4,13 @@ import type { LocalImageProps, RemoteImageProps } from 'astro:assets';
 
 type Props = LocalImageProps | RemoteImageProps;
 
-const { props } = Astro;
+const {
+    props: { class: className, ...rest },
+} = Astro;
 ---
 
-<div class="image-wrapper">
-    <Image {...props} />
+<div class:list={['image-wrapper', className]}>
+    <Image {...rest} />
 </div>
 
 <style>

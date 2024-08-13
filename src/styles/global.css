@@ -183,6 +183,8 @@ h1 {
     font-size: var(--text-4);
     font-weight: 200;
     letter-spacing: -1.2px;
+    margin-bottom: var(--space-l);
+    text-wrap: pretty;
 }
 h2 {
     font-size: var(--text-2);
@@ -192,7 +194,6 @@ h2 {
 }
 h3 {
     font-size: var(--text-1);
-    padding-top: 16px;
     font-weight: 200;
 }
 h4 {
@@ -212,19 +213,27 @@ ul {
     margin: 0;
     padding: 0;
 }
-::marker {
-    color: hsl(var(--accent));
-    font-size: 83%;
-    font-weight: 400;
+li::marker {
+    content: none;
 }
-ul li::marker {
-    content: '❥';
-}
-ul {
-    padding-left: var(--space-xs);
-}
-ul > li {
-    padding-left: var(--space-2xs);
+.content {
+    ::marker {
+        color: hsl(var(--accent));
+        font-size: 83%;
+        font-weight: 400;
+    }
+    ul li::marker {
+        content: '❥';
+    }
+    ul {
+        padding-left: var(--space-xs);
+    }
+    ul > li {
+        padding-left: var(--space-2xs);
+    }
+    h3 {
+        padding-top: 16px;
+    }
 }
 .prose p {
     margin-bottom: 2em;

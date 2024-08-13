@@ -4,13 +4,13 @@ import Snippet from 'layouts/Snippet.astro';
 import { MDXcomponents } from 'components/MDXComponents';
 
 export async function getStaticPaths() {
-    const snippets = await getCollection('snippets');
+    const snippets = await getCollection('snippet');
     return snippets.map(snippet => ({
         params: { slug: snippet.slug },
         props: snippet,
     }));
 }
-type Props = CollectionEntry<'snippets'>;
+type Props = CollectionEntry<'snippet'>;
 
 const snippet = Astro.props;
 const { Content } = await snippet.render();

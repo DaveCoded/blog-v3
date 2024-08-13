@@ -5,7 +5,7 @@ import Header from 'components/Header.astro';
 import Footer from 'components/Footer.astro';
 import Metadata from 'components/Metadata.astro';
 
-type Props = CollectionEntry<'posts'>['data'];
+type Props = CollectionEntry<'post'>['data'];
 
 const { title, description, pubDate, tags } = Astro.props;
 ---
@@ -28,8 +28,21 @@ const { title, description, pubDate, tags } = Astro.props;
             }
             .title h1 {
                 text-align: center;
-                margin-bottom: var(--space-l);
-                text-wrap: pretty;
+            }
+
+            ::marker {
+                color: hsl(var(--accent));
+                font-size: 83%;
+                font-weight: 400;
+            }
+            ul li::marker {
+                content: '❥';
+            }
+            ul {
+                padding-left: var(--space-xs);
+            }
+            ul > li {
+                padding-left: var(--space-2xs);
             }
         </style>
     </head>

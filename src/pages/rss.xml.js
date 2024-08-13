@@ -4,7 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import config from 'arbour-config';
 
 export async function GET(context) {
-    const posts = await getCollection('posts');
+    const posts = await getCollection('post');
 
     const publishRSSByDefault = !config.noRSS;
 

@@ -1,0 +1,51 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+    title: string;
+    tech: string[];
+    link: string;
+    img: ImageMetadata;
+    alt: string;
+}
+
+const { title, tech, link, img, alt } = Astro.props;
+---
+
+<article>
+    <a href={link}>
+        <Image src={img} alt={alt} width={60} height={60} />
+        <h3>{title}</h3>
+    </a>
+    <p class="description">
+        <slot />
+    </p>
+    <p class="tech">
+        {tech.map(t => <span>{t}</span>)}
+    </p>
+</article>
+
+<style>
+    h3 {
+        padding: 0;
+    }
+    a {
+        display: flex;
+        align-items: center;
+        gap: var(--space-m);
+        margin-bottom: var(--space-s);
+    }
+    .description {
+        line-height: 1.4;
+        margin-bottom: var(--space-3xs);
+    }
+    .tech {
+        font-size: var(--text--1);
+        color: var(--grey-dark);
+    }
+    .tech span:not(:last-child)::after {
+        content: ', ';
+        margin-right: 0.5ch;
+    }
+</style>

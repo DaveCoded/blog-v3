@@ -1,0 +1,61 @@
+---
+import { getCollection, type ContentCollectionKey } from 'astro:content';
+import { Image } from 'astro:assets';
+import noteIcon from 'assets/notepad-icon.svg';
+import postIcon from 'assets/scroll-icon.svg';
+import snippetIcon from 'assets/code-icon.svg';
+
+const posts = await getCollection('post');
+const notes = await getCollection('note');
+const snippets = await getCollection('snippet');
+const content = [...posts, ...notes, ...snippets].sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+
+const collectionIconMap: Record<ContentCollectionKey, ImageMetadata> = {
+    post: postIcon,
+    note: noteIcon,
+    snippet: snippetIcon,
+};
+---
+
+<ul>
+    {
+        content.map(({ data, collection, slug }) => (
+            <li>
+                <div class="content-type">
+                    <Image src={collectionIconMap[collection]} alt="" width={20} height={20} />
+                    {collection}
+                </div>
+                <a href={`/${collection}/${slug}`}>
+                    <h3>{data.title}</h3>
+                </a>
+                <p>{data.description}</p>
+                <p>{data.pubDate.toLocaleDateString()}</p>
+                <ul class="tags">
+                    {data.tags.map(tag => (
+                        <li>#{tag}</li>
+                    ))}
+                </ul>
+            </li>
+        ))
+    }
+</ul>
+
+<style>
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-l);
+    }
+    .content-type {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2xs);
+        font-size: var(--text--1);
+        font-weight: 400;
+    }
+    .tags {
+        flex-direction: row;
+    }
+</style>

@@ -1,0 +1,64 @@
+---
+import Project from './Project.astro';
+
+import puylLogo from 'assets/PUYL.svg';
+import githubLogo from 'assets/github-mark.svg';
+import FEMentorLogo from 'assets/frontend-mentor-logo.png';
+
+const PUYL_LINK = 'https://prompt.davebernhard.com/';
+const LODASH_CODEMOD_LINK = 'https://github.com/DaveCoded/lodash-imports-codemod';
+const PASSWORD_GENERATOR_LINK = 'https://password-gen.davebernhard.com/';
+---
+
+<ul>
+    <li>
+        <Project
+            title="Prompt up your life"
+            tech={['svelte', 'typescript']}
+            link={PUYL_LINK}
+            img={puylLogo}
+            alt="Abstract broken circle shape">
+            A random prompt generator for practising UI design, development and illustration
+        </Project>
+    </li>
+
+    <li>
+        <Project
+            title="Lodash imports codemod"
+            tech={['jscodeshift']}
+            link={LODASH_CODEMOD_LINK}
+            img={githubLogo}
+            alt="Github logo"
+            >A codemod for converting to single method imports from lodash
+        </Project>
+    </li>
+
+    <li>
+        <Project
+            title="Password Generator"
+            tech={['gatsby', 'typescript', 'styled-components']}
+            link={PASSWORD_GENERATOR_LINK}
+            img={FEMentorLogo}
+            alt="Frontend Mentor logo"
+            >Implementation of <a
+                href="https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh"
+                target="_blank"
+                rel="noopener noreferrer">this password generator</a
+            >on Frontend Mentor
+        </Project>
+    </li>
+</ul>
+
+<style>
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xl);
+    }
+    hr {
+        margin: 0;
+        border: none;
+        border-top: 1px solid var(--grey);
+        width: 70%;
+    }
+</style>
