@@ -5,50 +5,42 @@ import Footer from 'components/Footer.astro';
 import ProjectsList from 'components/ProjectsList.astro';
 import ContentList from 'components/ContentList.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+import PageLayout from 'layouts/page-layout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-    <head>
-        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+<PageLayout>
+    <style slot="head-styles" is:global>
+        main {
+            --gap: clamp(var(--space-xs), 5vw, var(--space-l));
+            width: min(840px, 100% - var(--gap) * 2);
+        }
+        .section {
+            margin-top: var(--space-2xl);
+        }
+        .projects {
+            width: min(600px, 100% - var(--gap) * 2);
+        }
+        h1 {
+            margin-bottom: var(--space-m);
+        }
+        h2 {
+            margin-bottom: var(--space-m);
+            padding-top: 0;
+        }
+    </style>
 
-        <style>
-            main {
-                --gap: clamp(var(--space-xs), 5vw, var(--space-l));
-                width: min(840px, 100% - var(--gap) * 2);
-            }
-            .section {
-                margin-top: var(--space-2xl);
-            }
-            .projects {
-                width: min(600px, 100% - var(--gap) * 2);
-            }
-            h1 {
-                margin-bottom: var(--space-m);
-            }
-            h2 {
-                margin-bottom: var(--space-m);
-                padding-top: 0;
-            }
-        </style>
-    </head>
-    <body>
-        <Header />
-        <main>
-            <h1>Hello.</h1>
-            <p>
-                I'm Dave, a frontend developer in London. I write about web technologies and
-                whatever interests me in the moment.
-            </p>
-            <div class="projects section">
-                <h2>Projects</h2>
-                <ProjectsList />
-            </div>
-            <div class="writing section">
-                <h2>Writing</h2>
-                <ContentList />
-            </div>
-        </main>
-        <Footer />
-    </body>
-</html>
+    <h1>Hello.</h1>
+    <p>
+        I'm Dave, a frontend developer in London. I write about web technologies and whatever
+        interests me in the moment.
+    </p>
+    <div class="projects section">
+        <h2>Projects</h2>
+        <ProjectsList />
+    </div>
+    <div class="writing section">
+        <h2>Writing</h2>
+        <ContentList />
+    </div>
+</PageLayout>
